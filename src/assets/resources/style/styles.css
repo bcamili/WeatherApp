@@ -1,3 +1,78 @@
+html {
+    --darkColor: rgb(0,0,0);
+    --darkMidColor: rgb(85,85,85);
+    --lightMidColor: rgb(170,170,170);
+    --lightColor: rgb(255,255,255);
+
+    font-size: 12px;
+    word-break: break-word;
+}
+
+/* html * {
+    border: 1px solid red;
+} */
+
+body{
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--darkMidColor);
+}
+
 #app{
-    color: red;
+    background-color: var(--lightMidColor);
+    margin-top: 5vh;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#appContent{
+
+}
+
+#searchbar form{
+    display: flex;
+    gap: 15px
+}
+
+#searchButton{
+    margin: 0px;
+    border: none;
+    border-radius: 30px;
+}
+
+#tempDiv{
+    
+}
+
+#toggleFCDiv{
+    display: flex;
+    justify-content: center;
+}
+
+#tempData{
+    display: flex;
+    min-height: 100px;
+    font-size: 6rem;
+    justify-content: center;
+    align-items: center;
+}
+
+#conditionsData{
+    display: flex;
+    font-size: 1.5rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#cityDiv{
+    display: flex;
+    min-height: 50px;
+    font-size: 1.5rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }

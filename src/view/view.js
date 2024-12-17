@@ -1,31 +1,89 @@
 import "../assets/resources/style/styles.css";
 
 export const view = (function (){
-    const appDiv = document.getElementById("app");
+
+    let currentData;
+
+    const app = document.getElementById("app");
+    const appContent = document.createElement("div");
+    appContent.id = "appContent";
+    app.appendChild(appContent);
+
+    const searchbar = document.createElement("div");
+    searchbar.id = "searchbar";
+
+    const searchForm = document.createElement("form");
+    searchForm.id = "searchForm";
+    searchbar.appendChild(searchForm);
+
+    const searchbarInput  = document.createElement("input");
+    searchbarInput.id = "searchbarInput";
+    searchbarInput.type = "text";
+    searchbarInput.required = true;
+    searchForm.appendChild(searchbarInput);
+    
+    const searchButton = document.createElement("button");
+    searchButton.id = "searchButton";
+    searchButton.type = "submit";
+    searchButton.textContent = "Search";
+    searchForm.appendChild(searchButton);
+    appContent.appendChild(searchbar);
+
+    const cityDiv = document.createElement("div");
+    cityDiv.id = "cityDiv";
+    appContent.appendChild(cityDiv);
+
+    const tempDiv = document.createElement("div");
+    tempDiv.id = "tempDiv";
+    appContent.appendChild(tempDiv);
+
+    const toggleFCDiv = document.createElement("div");
+    toggleFCDiv.id = "toggleFCDiv";
+    const toggleFC = document.createElement("input");
+    toggleFC.id = "toggleFC";
+    toggleFC.type ="checkbox";
+    toggleFCDiv.appendChild(toggleFC);
+    tempDiv.appendChild(toggleFCDiv);
+
+    const tempData = document.createElement("div");
+    tempData.id = "tempData";
+    tempDiv.appendChild(tempData);
+
+    const conditionsData = document.createElement("div");
+    conditionsData.id = "conditionsData";
+    tempDiv.appendChild(conditionsData);
+
+    let inFahrenheit = false;
 
     const init = (handler) =>{
-        const searchbar  = document.createElement("input");
-        searchbar.type = "text";
-        appDiv.appendChild(searchbar);
-    
-        const searchButton = document.createElement("button");
-        searchButton.textContent = "Search";
-        searchButton.addEventListener("click", () =>{
-            handler(searchbar.value);
+
+        searchForm.addEventListener("submit", (e) =>{
+            e.preventDefault();
+            handler(searchbarInput.value);
         });
-        appDiv.appendChild(searchButton);
+
+        toggleFC.addEventListener("click", () =>{
+            inFahrenheit = inFahrenheit == false ? true : false;
+            updateView();
+        });
     }
 
 
     const displayData = (data) =>{
-        const cityDiv = document.createElement("div");
-        const tempDiv = document.createElement("div");
+        currentData = data;
+        updateView();
 
-        cityDiv.textContent = data.address;
-        tempDiv.textContent = data.currentConditions.temp;
+    }
 
-        appDiv.appendChild(cityDiv);
-        appDiv.appendChild(tempDiv);
+    const updateView = () =>{
+        cityDiv.textContent = currentData.city;
+        conditionsData.textContent = currentData.conditions;
+
+        if (inFahrenheit){
+            tempData.textContent = currentData.tempCurrentF + "°F"
+        }else{
+            tempData.textContent = currentData.tempCurrentC + "°C"
+        }
     }
 
     return {init, displayData};
