@@ -1,4 +1,4 @@
-export const fetchData = (function(){
+export const accessAPI = (function(){
 
     const apiKey = "UTEL5KUEDYG6TZNC58TN9F7AL";
     const apiURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
