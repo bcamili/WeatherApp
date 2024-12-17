@@ -5,7 +5,11 @@ html {
     --lightColor: rgb(255,255,255);
 
     font-size: 12px;
+    font-family: "Quicksand";
     word-break: break-word;
+
+    min-height: 100%;
+
 }
 
 /* html * {
@@ -16,31 +20,112 @@ body{
     margin: 0px;
     display: flex;
     justify-content: center;
-    background-color: var(--darkMidColor);
+    background: linear-gradient(var(--darkMidColor), var(--darkColor)) no-repeat;
+    min-height: 100%;
+    overflow: hidden;
+
 }
 
 #app{
-    background-color: var(--lightMidColor);
-    margin-top: 5vh;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 20px;
-    border-radius: 10px;
+    min-width: 320px;
+    max-width: 320px;
 }
 
-#appContent{
+#appTitle{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: auto;
+    grid-template-areas: "a b" "c c";
+    font-family: "Permanent Marker";
+    font-size: 4rem;
+    margin-top: 20px;
+    color: var(--darkColor);
+    word-break: normal;
+}
 
+#spanA{
+    font-size: 2rem;
+    grid-area: a;
+    margin-right: -15px;
+    margin-top: 3px;
+    z-index: 2;
+    text-align: end;
+}
+
+#spanB{
+    grid-area: b;
+    color: var(--lightColor);
+    text-shadow: -3px 3px 0px var(--darkColor);
+}
+#spanC{
+    font-size: 1.3rem;
+    grid-area: c;
+    text-align: center;
+    font-family: "Quicksand";
+    margin-top: -10px;
+
+}
+#appContent{
+    background-color: var(--lightMidColor);
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    color: var(--darkColor);
 }
 
 #searchbar form{
     display: flex;
-    gap: 15px
+    justify-content: center;
+    gap: 15px;
+
+}
+
+#searchbarInput{
+    border: 1px solid var(--darkColor);
+    border-radius: 30px;
+    text-indent: 5px;
+}
+
+form input[type=text]{
+    background-color: var(--lightColor);
+    color: var(--darkColor);
+}
+
+form input[type=text]:focus{
+    background-color: var(--lightColor) !important; 
+    color: var(--darkColor) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px var(--lightColor) inset !important;
+    -webkit-text-fill-color: var(--darkColor) !important;
+
+}
+
+#searchbarInput:focus{
+    outline: none;
+    outline: 2px solid var(--darkMidColor);
 }
 
 #searchButton{
     margin: 0px;
     border: none;
     border-radius: 30px;
+    color: inherit;
+    background-color: var(--darkMidColor);
+    border: 1px solid var(--darkColor);
+    word-break: normal;
+}
+
+#searchButton:hover{
+    background-color: var(--darkColor);
+    color: var(--lightColor);
 }
 
 #tempDiv{
@@ -50,7 +135,64 @@ body{
 #toggleFCDiv{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
+
+#toggleSwitch{
+    margin: 0px 5px;
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 17px; 
+
+    
+}
+
+#toggleSwitch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#toggleSpan {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--darkMidColor);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px;
+ }
+
+ #toggleSpan:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 1px;
+    bottom: 1px;
+    background-color: var(--lightColor);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.degLabel{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+input:checked + #toggleSpan:before {
+    -webkit-transform: translateX(23px);
+    -ms-transform: translateX(23px);
+    transform: translateX(23px);
+}
+
+
+
 
 #tempData{
     display: flex;
@@ -75,4 +217,15 @@ body{
     text-align: center;
     justify-content: center;
     align-items: center;
+}
+
+
+
+.drop{
+    width: 2px;
+    height: 30px;
+    border-radius: 30px;
+    backdrop-filter: blur(3px);
+    background-color: linear-gradient(rgba(0,0,0,0),var(--lightColor));
+    box-shadow: 2px 2px 2px var(--lightColor);
 }

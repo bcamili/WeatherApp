@@ -1,7 +1,6 @@
 export const model = (function () {
 
     const createWeather = (data) =>{
-        console.log(data);
         const weather = {
             city: data.resolvedAddress,
             tempCurrentF : data.currentConditions.temp,
